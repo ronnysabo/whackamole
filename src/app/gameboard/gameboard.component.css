@@ -1,0 +1,11 @@
+.game-board {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cell {
+  width: 70px;
+  height: 70px;
+  border: 1px solid gray;
+  text-align: center;
+}
