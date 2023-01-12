@@ -1,19 +1,28 @@
 <p>gameboard works!</p>
 
-<button class="btn btn-primary" (click)="__gamelogic.startTimer()">
+<button
+  class="btn btn-primary"
+  (click)="_gameLogic.startTimer()"
+  [disabled]="_gameLogic.timerStarted"
+>
   Starta
 </button>
-
-<div class="game-board">
-  <div class="row" *ngFor="let row of __gamelogic.grid">
-    <div class="cell" *ngFor="let cell of row">{{ cell }}</div>
+<button
+  class="btn btn-primary"
+  (click)="_gameLogic.stopTimer()"
+  [disabled]="!_gameLogic.timerStarted"
+>
+  Stoppa
+</button>
+<div>{{ _gameLogic.remainingTime }}</div>
+<div>{{ _gameLogic.score }}</div>
+<div class="board">
+  <div class="row" *ngFor="let row of grid; let i = index">
+    <div
+      class="cell"
+      *ngFor="let color of row; let j = index"
+      [ngStyle]="{ 'background-color': color }"
+      (click)="_gameLogic.onCellClick(i, j)"
+    ></div>
   </div>
 </div>
-
-<!-- <div class="grid">
-  <div *ngFor="let row of grid; index as a">
-    <div *ngFor="let tile of row; index as b" class="grid-tile">
-      {{ grid[a][b] }}
-    </div>
-  </div>
-</div> -->

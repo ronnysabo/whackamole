@@ -1,4 +1,4 @@
-.game-board {
+.board {
   display: flex;
   flex-wrap: wrap;
 }
