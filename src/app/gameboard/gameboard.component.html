@@ -17,12 +17,9 @@
 <div>{{ _gameLogic.remainingTime }}</div>
 <div>{{ _gameLogic.score }}</div>
 <div class="board">
-  <div class="row" *ngFor="let row of grid; let i = index">
-    <div
-      class="cell"
-      *ngFor="let color of row; let j = index"
-      [ngStyle]="{ 'background-color': color }"
-      (click)="_gameLogic.onCellClick(i, j)"
-    ></div>
+  <div class="row" *ngFor="let row of _gameLogic.grid; let i = index">
+    <div class="cell" *ngFor="let image of row; let j = index">
+      <img *ngIf="image" [src]="image" (click)="_gameLogic.onCellClick(i, j)" />
+    </div>
   </div>
 </div>

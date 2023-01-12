@@ -1,38 +1,37 @@
 import { Injectable } from '@angular/core';
-import { interval, timer } from 'rxjs';
+import { interval } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GamelogicService {
-  color = ['purple'];
   constructor() {
-    interval(400).subscribe(() => {
+    interval(100).subscribe(() => {
       if (this.timerStarted) {
         this.updateRandomCell();
       }
     });
   }
 
-  cells: number = 0;
+  image = ['mole.jpg'];
   score = 0;
-  colorCounter = 0;
+  imageCounter = 0;
 
   updateRandomCell() {
-    if (this.colorCounter >= 3) {
+    if (this.imageCounter >= 3) {
       return;
     }
 
     const rowIndex = Math.floor(Math.random() * 5);
     const cellIndex = Math.floor(Math.random() * 5);
-    let colorIndex = Math.floor(Math.random() * this.color.length);
-    this.grid[rowIndex][cellIndex] = this.color[colorIndex];
-    this.colorCounter++;
+    let imageIndex = Math.floor(Math.random() * this.image.length);
+    this.grid[rowIndex][cellIndex] = this.image[imageIndex];
+    this.imageCounter++;
 
     setTimeout(() => {
       this.grid[rowIndex][cellIndex] = '';
-      this.colorCounter--;
-    }, 3000);
+      this.imageCounter--;
+    }, 1000);
   }
 
   onCellClick(rowIndex: number, cellIndex: number) {
@@ -51,7 +50,7 @@ export class GamelogicService {
     ['', '', '', '', ''],
   ];
 
-  remainingTime: number = 10;
+  remainingTime: number = 60;
   timerStarted: boolean = false;
   intervalId: any;
 
