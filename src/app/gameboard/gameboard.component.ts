@@ -7,8 +7,8 @@ import { GamelogicService } from '../gamelogic.service'; //importerar service
   styleUrls: ['./gameboard.component.css'],
 })
 export class GameboardComponent {
-  grid: string[][];
-  //konstruktor som gör min __gamelogic publik o kan användas utanför klassen - exempelvis i min html template!
+  grid!: string[][];
+  //konstruktor om gör min __gamelogic publik o kan användas utanför klassen - exempelvis i min html template!
   constructor(public _gameLogic: GamelogicService) {
     this.grid = this._gameLogic.grid;
   }

@@ -1,24 +1,23 @@
-<p>gameboard works!</p>
+<div class="heading"><h1>Whack-A-Mole</h1></div>
+<div class="container">
+  <div class="time">Tid: {{ _gameLogic.remainingTime }}</div>
+  <div class="score">Poäng: {{ _gameLogic.score }}</div>
+  <button
+    class="btn btn-dark"
+    (click)="_gameLogic.startTimer()"
+    [disabled]="_gameLogic.timerStarted"
+  >
+    Starta
+  </button>
+</div>
 
-<button
-  class="btn btn-primary"
-  (click)="_gameLogic.startTimer()"
-  [disabled]="_gameLogic.timerStarted"
->
-  Starta
-</button>
-<button
-  class="btn btn-primary"
-  (click)="_gameLogic.stopTimer()"
-  [disabled]="!_gameLogic.timerStarted"
->
-  Stoppa
-</button>
-<div>{{ _gameLogic.remainingTime }}</div>
-<div>{{ _gameLogic.score }}</div>
 <div class="board">
-  <div class="row" *ngFor="let row of _gameLogic.grid; let i = index">
+  <!-- loopar igenom rows, sätter index till i -->
+  <div class="rows" *ngFor="let row of _gameLogic.grid; let i = index">
+    <!-- loopar igenom cellerna i rowen. -->
     <div class="cell" *ngFor="let image of row; let j = index">
+      <!-- ngif kontrollerar om de ska visas bild eller inte från src image.
+      anropar sedan onspellclick metoden. -->
       <img *ngIf="image" [src]="image" (click)="_gameLogic.onCellClick(i, j)" />
     </div>
   </div>
